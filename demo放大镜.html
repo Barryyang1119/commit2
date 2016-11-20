@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<script src="./function.js"></script>
+</head>
+<script>
+	$(function(){
+		var copybox=$(".copybox")[0];
+		var box=$(".box")[0];
+		var mask=$(".mask")[0];
+		var showbox=$(".showbox")[0];
+		var newimg;
+	hover(copybox,function(){
+				var img=$("img",box)[0];
+				mask.style.display="block";
+				showbox.style.display="block";
+				newimg=document.createElement("img");
+				newimg.src=img.src;
+				appendObj(showbox,newimg);
+				},function(){
+				mask.style.display="none";
+				showbox.style.display="none";
+				removeObj(newimg);
+			});
+		copybox.onmousemove=function(e){
+			var ev=getEvent(e);//ev=e||widow.event; //加函数getEvent(e)
+			var ox=ev.offsetX;
+			var oy=ev.offsetY;
+			var left=ox-mask.offsetWidth/2;
+			var top=oy-mask.offsetHeight/2;
+			if(left<0){
+				left=0;
+			}
+			if(top<0){
+				top=0;
+			}
+			if(left>box.offsetWidth-mask.offsetWidth){
+				left=box.offsetWidth-mask.offsetWidth;
+			}
+			if(top>box.offsetHeight-mask.offsetHeight){
+				top=box.offsetHeight-mask.offsetHeight;
+			}
+			mask.style.left=left+"px";
+			mask.style.top=top+"px";
+			newimg.style.left=-left*5+"px";
+			newimg.style.top=-top*5+"px";
+			}
+
+
+
+	})
+</script>
+<style>
+	.box{
+		width: 400px;
+		height: 400px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		overflow: hidden;
+		border: 1px solid red;
+
+	}
+	.box img{
+		width: 400px;
+		height: 400px;
+
+	}
+	.mask{
+		width: 90px;
+		height: 70px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background: #000;
+		opacity: 0.8;
+		display: none;
+	}
+	.showbox{
+		width: 400px;
+		height: 400px;
+		position: absolute;
+		left: 400px;
+		top:0;
+		border:1px solid #000;
+		display: none;
+		overflow: hidden;
+
+	}
+	.showbox img{
+		width: 2000px;
+		height: 2000px;
+		position: absolute;
+	}
+	.copybox{
+		width: 400px;
+		height: 400px;
+		position: absolute;
+		left: 0;
+		top:0;
+		z-index: 1;
+		cursor: crosshair;
+	}
+</style>
+<body>
+	<div class="box">
+		<img src="11.jpg" alt="">
+		<div class="mask"></div><!-- 遮罩 -->
+	</div>
+	<div class="showbox"></div>
+	<div class="copybox"></div>
+</body>
+</html>
