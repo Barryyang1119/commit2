@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3D旋转效果</title>
+	<link rel="stylesheet" href="css/index.css">
+	<style id="dynamic">
+		@keyframes Rotate{
+			0%{
+				transform: perspective(2000px) rotateX(0deg) rotateY(0deg);
+			}
+			100%{
+				transform: perspective(2000px) rotateX(360deg) rotateY(360deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="front"></div>
+		<div class="front2 out">I</div>
+		<div class="back"></div>
+		<div class="back2 out">LOVE</div>
+		<div class="top"></div>
+		<div class="top2 out">YOU</div>
+		<div class="bottom"></div>
+		<div class="bottom2 out">SUPER</div>
+		<div class="left"></div>
+		<div class="left2 out">FENG</div>
+		<div class="right"></div>
+		<div class="right2 out">!</div>
+	</div>
+</body>
+	<script src="js/jquery-1.12.4.min.js"></script>
+	<script src="js/index.js"></script>
+</html>
